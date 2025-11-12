@@ -23,6 +23,8 @@ namespace Yumagulov41
         public ServicePage()
         {
             InitializeComponent();
+            var currentServices = Yumagulov41Entities.GetContext().Product.ToList();
+            ServiceListView.ItemsSource = currentServices;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
