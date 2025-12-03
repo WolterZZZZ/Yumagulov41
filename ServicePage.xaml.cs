@@ -20,13 +20,35 @@ namespace Yumagulov41
     /// </summary>
     public partial class ServicePage : Page
     {
-        public ServicePage()
+        public ServicePage(User user)
         {
             InitializeComponent();
-            var currentServices = Yumagulov41Entities.GetContext().Product.ToList();
-            ServiceListView.ItemsSource = currentServices;
-            ComboType.SelectedIndex = 0;
-            UpdateServices();
+            if (user != null)
+            {
+                FIOTB.Text = user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
+                switch (user.UserRole)
+                {
+                    case 1:
+                        RoleTB.Text = "Клиент"; break;
+                    case 2:
+                        RoleTB.Text = "Менеджер"; break;
+                    case 3:
+                        RoleTB.Text = "Администратор"; break;
+                }
+                var currentServices = Yumagulov41Entities.GetContext().Product.ToList();
+                ServiceListView.ItemsSource = currentServices;
+                ComboType.SelectedIndex = 0;
+                UpdateServices();
+            }
+            else
+            {
+                FIOTB.Text = "гость ";
+                var currentServices = Yumagulov41Entities.GetContext().Product.ToList();
+                ServiceListView.ItemsSource = currentServices;
+                ComboType.SelectedIndex = 0;
+                UpdateServices();
+            }
+
         }
         private void UpdateServices()
         {

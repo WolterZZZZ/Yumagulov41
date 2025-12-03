@@ -15,7 +15,21 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Margin="10,5" Orientation="Vertical">
+            <!-- Строка с ФИО -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Вы авторизованы как " Margin="0,0,5,0"/>
+                <TextBlock FontSize="15" x:Name="FIOTB"/>
+            </StackPanel>
+
+            <!-- Строка с ролью -->
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock FontSize="15" Text="Роль: " Margin="0,0,5,0"/>
+                <TextBlock FontSize="15" x:Name="RoleTB"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Text="Введите название для поиска " TextAlignment="Right"
                            Width="300" FontSize="20"></TextBlock>
@@ -24,10 +38,10 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Text=" Выберите название для поиска " TextAlignment="Right"
+                <TextBlock Text=" Выберите фильтр для поиска " TextAlignment="Right"
                            Width="300" FontSize="20"></TextBlock>
                 <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged"
-                          FontSize="15" Width="200">
+                          FontSize="15" Width="300">
                     <TextBlock>Все</TextBlock>
                     <TextBlock> от 0 до 9.99% </TextBlock>
                     <TextBlock> от 10 до 14.99% </TextBlock>
@@ -35,7 +49,7 @@
                 </ComboBox>
             </StackPanel>
         </WrapPanel>
-        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
+        <StackPanel HorizontalAlignment="Right" Grid.Row="1" Orientation="Vertical" Margin="5">
             <RadioButton Content="По возрастанию стоимости" GroupName="Sort"
                          Width="300" FontSize="20" Checked="RButtonUp_Checked"
                          Name="RButtonUp"></RadioButton>
